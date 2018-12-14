@@ -1,0 +1,14 @@
+<!-- <app-create>Add New Todo</app-create> -->
+<!-- <app-list> ToDo List</app-list> -->
+<app-list [todos]="tasks" *ngIf="listPage" 
+(addNewToDoButtonClicked)="showNewToDoForm()"
+(editToDoButtonClicked)
+="showEditToDoForm()"
+>ToDo  List</app-list>
+<app-create 
+*ngIf="formPage"
+(addNewToDo)="onToDoAdded($event)"
+>Add/Edit New ToDo</app-create>
+<!-- <app-new-training>Create New Training</app-new-training> -->
+<!-- <app-edit></app-edit> -->
+<app-edit  >Edit New ToDo</app-edit>
