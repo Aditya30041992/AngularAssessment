@@ -1,0 +1,25 @@
+<div class="container mt-5 mb-4">
+  <h1>EDIT FORM</h1>
+  <div class="row ">
+    <div class="col ">
+      <form #formCtrl="ngForm" ngNativeValidate >
+        <div class="form-group" >
+          <label for="task">Task</label>
+          <input type="text" class="form-control" id="task" aria-describedby="emailHelp"
+           name="name" [(ngModel)]="task.name" [required]="true" ngControl="passwordCtrl" required>
+        </div>
+        <div class="form-group">
+          <label for="category">Category</label>
+          <input type="text" class="form-control" name="listFilter" [(ngModel)]="task.category" [required]="true" ngControl="passwordCtrl" required>
+          
+        </div>
+        <div class="form-group form-check">
+          <input type="checkbox" class="form-check-input" name="status" [(ngModel)]="task.status">
+          <label class="form-check-label" for="status">Completed</label>
+        </div>
+        <button type="reset" class="btn btn-warning" (click)="clearSearch()">Clear</button>
+        <button type="button"  [disabled]="!formCtrl.form.valid"   class="btn btn-primary ml-2" (click)="onSubmitClicked()">Upadate</button>
+      </form>
+    </div>
+  </div>
+</div>

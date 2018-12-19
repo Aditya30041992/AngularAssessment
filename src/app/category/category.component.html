@@ -1,0 +1,11 @@
+<app-categorylist  
+*ngIf="categorylistPage" 
+(addNewCategoryButtonClicked)="showNewCategoryForm()" 
+(editCategoryButtonClicked)="showEditCategoryForm($event)">Category List</app-categorylist>
+<app-createcategory *ngIf="categoryformPage"  (addNewCategory)="onCategoryAdded($event)" ></app-createcategory>
+<app-editcategory [categorytask]="categorytask" *ngIf="editcategoryformPage" (editNewCategory)="onCategoryEdited($event)"></app-editcategory>
+
+
+<!-- *ngIf="categoryformPage" -->
+<!-- openToDolistOnButtonClicked -->
+<!-- [categories]="categorytasks" -->

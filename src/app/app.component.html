@@ -1,0 +1,14 @@
+
+
+<app-header  (openCategorylistOnButtonClicked)="showCategoryForm()" (openToDolistOnButtonClicked)="showToDolistForm()" ></app-header>
+<!-- 
+*ngIf=""(openCategorylistOnButtonClicked)="showCategoryForm()" -->
+
+<div class="container">
+
+    <app-to-do *ngIf="listPage" (openCategorylistOnButtonClicked)="showCategoryForm()"></app-to-do>
+    <app-category *ngIf="categorylistPage" (openCategorylistOnButtonClicked)="showCategoryForm()" ></app-category>
+    <router-outlet></router-outlet>
+</div>
+<!-- openToDolistOnButtonClicked -->
+<!-- showToDolistForm -->
