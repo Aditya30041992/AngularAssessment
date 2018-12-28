@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter} from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 
 
 @Component({
@@ -8,17 +8,9 @@ import { Component, OnInit, Output, EventEmitter} from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  @Output() openCategorylistOnButtonClicked = new EventEmitter();
-  @Output() openToDolistOnButtonClicked = new EventEmitter();
   constructor() { }
 
   ngOnInit() {
   }
   
-  onToDoButtonClick(){
-    this.openToDolistOnButtonClicked.emit();
-  }
-  onCategoryButtonClick(){
-    this.openCategorylistOnButtonClicked.emit();
-  }
 }

@@ -8,9 +8,10 @@ import { Category } from '../models/Category';
 @Injectable()
 export class Categoryservice {
   categorytasks = [
-    new Category( 'CDAC'),
-    new Category( 'FRESHER'),
-    new Category( 'MCA')
+    new Category('CDAC'),
+    new Category('FRESHER'),
+    new Category('MCA'),
+    new Category('BCA')
   ];
 
   constructor() { }

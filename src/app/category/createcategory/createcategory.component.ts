@@ -1,5 +1,8 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-
+import { Component, OnInit } from '@angular/core';
+import { Categoryservice } from 'src/app/services/category.service';
+import { Category } from 'src/app/models/Category';
+import { ToastrService } from 'ngx-toastr';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-createcategory',
@@ -8,28 +11,37 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 })
 export class CreatecategoryComponent implements OnInit {
 
+  category: string = "";
 
-  @Output()addNewCategory = new EventEmitter<{
-    category: string
-  }>();
-
-  category: string ="";
-  
-  constructor() { }
-
+  categoryService: Categoryservice;
+  constructor(
+    categoryService: Categoryservice,
+    private toastr: ToastrService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {
+    this.categoryService = categoryService;
+  }
   ngOnInit() {
   }
   clearSearch() {
-    
-    this.category=null;
-    
+
+    this.category = null;
+
   }
+
   onSubmitClicked() {
-    this.addNewCategory.emit({
-     
-      category: this.category
-      
-    });
+    this.categoryService.categorytasks.push(
+      new Category(this.category)
+    );
+
+    this.category = "";
+
+    this.toastr.success('Category Added Sucessfully');
+  }
+  onBackButtonClick(){
+    this.router.navigate(['/category']);
   }
 
 }
+

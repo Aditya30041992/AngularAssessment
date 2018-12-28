@@ -18,17 +18,15 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" (click)="onToDoButtonClick()">TODO</a>
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" [routerLink]="['/todo']">TODO</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" (click)="onCategoryButtonClick()">CATEGORY</a>
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" [routerLink]="['/category']">CATEGORY</a>
         </li>
-        <!-- <li class="nav-item">
-          <button type="submit" class="btn btn-outline-info mt-4" (click)="onCategoryButtonClick()">NEW TODO</button>
-        </li> -->
       </ul>
     </div>
   </nav>
 </body>
+
 </html>

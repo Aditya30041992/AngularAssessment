@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -15,8 +17,8 @@ import { CategoryComponent } from './category/category.component';
 import { EditComponent } from './to-do/edit/edit.component';
 import { CreatecategoryComponent } from './category/createcategory/createcategory.component';
 import { EditcategoryComponent } from './category/editcategory/editcategory.component';
-import { ToDoservice } from './services/to-do.service';
-import { Categoryservice } from './services/category.service';
+//import { ToDoservice } from './services/to-do.service';
+//import { Categoryservice } from './services/category.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,14 +35,15 @@ import { Categoryservice } from './services/category.service';
   ],
 
   imports: [
-    BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
-    
+    ReactiveFormsModule,
+    BrowserModule,
+    BrowserAnimationsModule, // required animations module
+    ToastrModule.forRoot() // ToastrModule added  
   ],
   providers: [
-    
+
   ],
   bootstrap: [AppComponent]
 })

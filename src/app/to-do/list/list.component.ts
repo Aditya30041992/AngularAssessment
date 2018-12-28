@@ -1,5 +1,7 @@
-import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, } from '@angular/core';
 import { ToDoservice } from 'src/app/services/to-do.service';
+import { ToastrService } from 'ngx-toastr';
+import { Router, ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -7,15 +9,20 @@ import { ToDoservice } from 'src/app/services/to-do.service';
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.css']
 })
+
 export class ListComponent implements OnInit {
 
   todos;
-  @Output() addNewToDoButtonClicked = new EventEmitter();
 
-  @Output() editToDoButtonClicked = new EventEmitter<{index : number}>();
+
+  
   @Output() deleteToDoButtonClicked = new EventEmitter();
-  constructor( toDoService: ToDoservice ) 
-  { 
+  constructor(
+    toDoService: ToDoservice,
+    private toastr: ToastrService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {
     this.todos = toDoService.tasks;
   }
 
@@ -23,34 +30,19 @@ export class ListComponent implements OnInit {
   }
 
   onNewButtonClick() {
-    this.addNewToDoButtonClicked.emit();
+    this.router.navigate(['create'], { relativeTo: this.route })
   }
-  
- 
+
+
   deleteFieldValue(todo) {
     this.todos = this.todos.filter(t => t.name !== todo.name);
+    this.toastr.warning('ToDo Deleted Sucessfully');
   }
 
-  
-  onEditButtonClick(index)
-  {
-    this.editToDoButtonClicked.emit({
-      'index':index
-    });
-    //   this.clicked=!this.clicked;
-  //   this.editIndex=i;
-   }
-  // onEditButtonClick(todo,i){
-  //   this.editToDoButtonClicked.emit(todo);
-  //   this.clicked=!this.clicked;
-  //   this.editIndex=i;
-  //   this.form.setValue({
-  //     index:i,
-  //     name:todo.name,
-  //     category:todo.category
 
-  //   })
-  // }
-  
-  
+  onEditButtonClick(index) {
+    this.router.navigate(['/todo', 'edit', index]);
+  }
+
+
 }

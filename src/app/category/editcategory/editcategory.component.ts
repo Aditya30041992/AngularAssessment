@@ -1,6 +1,8 @@
-import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input,ViewChild,ElementRef} from '@angular/core';
 import { Category } from 'src/app/models/Category';
 import { Categoryservice } from 'src/app/services/category.service';
+import { ToastrService } from 'ngx-toastr';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 
 @Component({
   selector: 'app-editcategory',
@@ -10,36 +12,44 @@ import { Categoryservice } from 'src/app/services/category.service';
 })
 export class EditcategoryComponent implements OnInit {
 
+  id;
 
-  @Input() categorytask:Category;
-  categories;
+  @ViewChild('category') category : ElementRef;
+ //category: string = "";
+  categoryService: Categoryservice;
+  constructor(
+    categoryService: Categoryservice,
+    private toastr: ToastrService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {
+    this.categoryService = categoryService;
 
-  @Output() editNewCategory = new EventEmitter<{
-    category: string;
-  }>();
-
-  category: string ="";
-
-  constructor(categoryService:Categoryservice)
-  {
-   this.categories = categoryService.categorytasks;
   }
 
 
   ngOnInit() {
+    this.id = this.route.snapshot.params['id'];
+
+    this.route.params.subscribe(
+      (params: Params) => {
+        this.id = params['id'];
+      }
+    );
+
   }
   clearSearch() {
-    
-    this.category=null;
-    
-  }
-  onSubmitClicked() {
-    this.editNewCategory.emit({
-     
-      category: this.category
-      
-    });
-  }
 
+    this.category = null;
+    this.toastr.success('Category Cleared Sucessfully');
 
+  }
+  onSubmitClicked(category:HTMLInputElement) {
+    this.categoryService.categorytasks[this.id].category = this.category.nativeElement.value;
+   // this.categoryService.categorytasks[this.id].category = Category.value;
+  // this.categoryService.categorytasks[this.id].category;
+  }
+  onBackButtonClick(){
+    this.router.navigate(['/category']);
+  }
 }
